@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title>Scatter Chart</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="http://cdn.zingchart.com/zingchart.min.js"></script>
+	<script src="http://cdn.zingchart.com/angular/zingchart-angularjs.js"></script>
+</head>
+<body ng-app="myApp">
+	<h1>Scatter Chart</h1>
+  	<div ng-controller="MainController">
+    <div zingchart id="chart-1" zc-json="myJson" zc-width="100%" zc-height="568px"></div>
+  </div>
+</body>
+<script type="text/javascript">
+var app = angular.module('myApp',['zingchart-angularjs']);
+
+app.controller('MainController', function($scope) {
+	$scope.myJson = {
+		type : "scatter",
+		series : [
+		{
+			values : [
+			[1,9],
+        	[2,15],
+        	[3,21],
+        	[4,30],
+        	[5,40],
+        	[6,59],
+        	[7,60],
+        	[8,75],
+        	[9,81],
+        	[10,99]
+			]
+		}
+		]
+	};
+});
+</script>
+</html>

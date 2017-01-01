@@ -1,0 +1,62 @@
+<html>
+<head>
+	<title>Bar Chart</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="http://cdn.zingchart.com/zingchart.min.js"></script>
+	<script src="http://cdn.zingchart.com/angular/zingchart-angularjs.js"></script>
+	<style type="text/css">
+	*{
+  		box-sizing: border-box;
+  		font-family : "verdana"
+	}
+	html,body{
+  		margin: 0px;
+	}
+
+	#controls{
+  		height: 68px;
+  		width: 700px;
+  		background-color : #5F7E87;
+  		color : white;
+  		padding: 10px;
+	}
+	</style>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="MainController">
+		<div zingchart id="chart-1" zc-json="myJson" zc-width="100%" zc-height="500px"></div>
+		<div id="controls">
+			<section>
+				<label>Add random values :</label><button ng-click="addValues()">Append</button>
+			</section>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+var app = angular.module('myApp',['zingchart-angularjs']);
+
+app.controller('MainController', function ($scope) {
+	$scope.myJson = {
+		type : 'bar',
+		title: {
+			backgroundColour : "transparent",
+			fontColor : "black",
+			text : "Bar Chart"
+		},
+		backgroundColour : "white",
+		series : [
+			{
+			values : [1,2],
+			backgroundColour : "#4DC0CF"
+			}
+		]
+	};
+
+	$scope.addValues = function () {
+		var val = Math.floor((Math.random() * 10));
+		console.log(val);
+		$scope.myJson.series[0].values.push(val);
+	}
+});
+</script>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>Bar Chart</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="http://cdn.zingchart.com/zingchart.min.js"></script>
+	<script src="http://cdn.zingchart.com/angular/zingchart-angularjs.js"></script>
+</head>
+<body ng-app="myApp">
+	<h1>Pie Chart</h1>
+	<div ng-controller="MainController">
+    	<div zingchart id="chart-1" zc-json="myJson" zc-width="100%" zc-height="568px"></div>
+  	</div>
+</body>
+<script type="text/javascript">
+var app = angular.module('myApp', ['zingchart-angularjs']);
+
+app.controller('MainController', function ($scope) {
+	$scope.myJson = {
+        globals: {
+            shadow: true,
+            fontFamily: "Verdana",
+            fontWeight: "100"
+        },
+        type: "pie",
+        backgroundColor: "#fff",
+
+        legend: {
+            layout: "x5",
+            position: "50%",
+            borderColor: "transparent",
+            marker: {
+                borderRadius: 10,
+                borderColor: "transparent"
+            }
+        },
+        tooltip: {
+            text: "%v requests"
+        },
+        plot: {
+            refAngle: "-90",
+            borderWidth: "0px",
+            valueBox: {
+                placement: "in",
+                text: "%npv %",
+                fontSize: "15px",
+                textAlpha: 1,
+            }
+        },
+        series: [{
+            text: "Negative",
+            values: [4660],
+            backgroundColor: "#FA6E6E #FA9494",
+        }, {
+            text: "Positive",
+            values: [1807],
+            backgroundColor: "#F1C795 #feebd2"
+        }]
+    };
+});
+</script>
+</html>
