@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Titanic Viz</title>
+	<meta charset="utf-8">
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+
+	<style type="text/css">
+		body { margin: 50px }
+	</style>
+</head>
+<body>
+<div id="chartContainer">
+	<h2>Passenger Classs</h2>
+
+	<script type="text/javascript">
+		var svg2 = dimple.newSvg('#chartContainer', 600,400);
+		d3.csv('titanic1.csv', function (data){
+			var ChartInstance = new dimple.chart(svg2,data);
+			ChartInstance.setBounds(60,30,510,305);
+
+			var x = ChartInstance.addCategoryAxis('x', 'Passenger Class');
+
+			var y = ChartInstance.addPctAxis('y','Count');
+
+			var s = ChartInstance.addSeries('Status', dimple.plot.bar);
+			ChartInstance.addLegend(60,10,510,20, "right");
+
+			ChartInstance.draw(1000);
+		});
+	</script>
+</div>
+
+<div id="chartPie">
+	<h2>Sex in titanic</h2>
+
+	<script type="text/javascript">
+		var svg1 = dimple.newSvg('#chartPie', 500, 400);
+		d3.csv('titanic_train.csv', function (data){
+			var PieInstance = new dimple.chart(svg1, data);
+			PieInstance.setBounds(20,20, 460,360);
+			PieInstance.addMeasureAxis('p',"Survived");
+			PieInstance.addSeries('Sex', dimple.plot.pie);
+			PieInstance.addLegend(500,20, 90,300, 'left')
+			PieInstance.draw();
+		});
+	</script>
+</div>
+
+</body>
+</html>
